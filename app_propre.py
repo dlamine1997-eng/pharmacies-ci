@@ -1,16 +1,17 @@
-import streamlit as st
+import math
 import folium
+import database
+import streamlit as st
+import streamlit.components.v1 as components
 from streamlit_folium import st_folium
 from streamlit_geolocation import streamlit_geolocation
-import math
-import database
 
-# 1. Configuration de la page
+# 1. Configuration de la page (OBLIGATOIREMENT LA PREMIÈRE COMMANDE STREAMLIT)
 st.set_page_config(page_title="Pharmacies CI & Urgences", page_icon="🏥", layout="wide")
 
-# Balise de vérification Google
-import streamlit.components.v1 as components
+# Balise de vérification Google (Appelée APPRÈS set_page_config)
 components.html('<meta name="google-site-verification" content="JVHHkwdTC5NTDYRH0vI1vZ6NEu4PLBRjAt1b8shi12A" />', height=0)
+
 # Initialisation de l'état de la session pour enregistrer les avis des utilisateurs
 if "suggestions" not in st.session_state:
     st.session_state.suggestions = [
@@ -345,5 +346,3 @@ elif menu == "📊 Admin & Avis":
             """, unsafe_allow_html=True)
     else:
         st.info("Aucune recommandation n'a encore été enregistrée.")
-
-    
