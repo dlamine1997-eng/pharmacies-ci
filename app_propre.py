@@ -8,12 +8,13 @@ import database
 # 1. Configuration de la page
 st.set_page_config(page_title="Pharmacies CI & Urgences", page_icon="🏥", layout="wide")
 
-import streamlit.components.v1 as components
-
 # Balise de vérification Google
-components.html("""
-    <meta name="google-site-verification" content="JVHHkwdTC5NTDYRH0vI1vZ6NEu4PLBRjAt1b8shi12A" />
-""", height=0)
+st.markdown("""
+    <head>
+        <meta name="google-site-verification" content="JVHHkwdTC5NTDYRH0vI1vZ6NEu4PLBRjAt1b8shi12A" />
+    </head>
+""", unsafe_allow_html=True)
+
 # Initialisation de l'état de la session pour enregistrer les avis des utilisateurs
 if "suggestions" not in st.session_state:
     st.session_state.suggestions = [
