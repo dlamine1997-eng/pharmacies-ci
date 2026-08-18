@@ -9,11 +9,17 @@ from streamlit_geolocation import streamlit_geolocation
 # 1. Configuration de la page (OBLIGATOIREMENT LA PREMIÈRE COMMANDE STREAMLIT)
 st.set_page_config(page_title="Pharmacies CI & Urgences", page_icon="🏥", layout="wide")
 
-# 2. Injection HTML compatible Google Search Console
+# 2. Injection HTML compatible Google Search Console & Google Analytics
 components.html(
     """
     <meta name="google-site-verification" content="JVHHkwdTC5NTDYRH0vI1vZ6NEu4PLBRjAt1b8shi12A" />
-    <meta name="google-site-verification" content="googleb97b37c701930e06" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCK32Y3RL4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NCK32Y3RL4');
+    </script>
     """,
     height=0,
 )
