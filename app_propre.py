@@ -2,20 +2,21 @@ import math
 import folium
 import database
 import streamlit as st
+import streamlit.components.v1 as components
 from streamlit_folium import st_folium
 from streamlit_geolocation import streamlit_geolocation
-
-# --- VÉRIFICATION GOOGLE SEARCH CONSOLE ---
-# Si Google cherche le fichier HTML téléchargé
-if "googleb97b37c701930e06.html" in st.query_params:
-    st.write("google-site-verification: googleb97b37c701930e06.html")
-    st.stop()
 
 # 1. Configuration de la page (OBLIGATOIREMENT LA PREMIÈRE COMMANDE STREAMLIT)
 st.set_page_config(page_title="Pharmacies CI & Urgences", page_icon="🏥", layout="wide")
 
-# Balise meta de vérification
-st.markdown('<meta name="google-site-verification" content="googleb97b37c701930e06" />', unsafe_allow_html=True)
+# 2. Injection HTML compatible Google Search Console
+components.html(
+    """
+    <meta name="google-site-verification" content="JVHHkwdTC5NTDYRH0vI1vZ6NEu4PLBRjAt1b8shi12A" />
+    <meta name="google-site-verification" content="googleb97b37c701930e06" />
+    """,
+    height=0,
+)
 
 # Initialisation de l'état de la session pour enregistrer les avis des utilisateurs
 if "suggestions" not in st.session_state:
@@ -24,7 +25,7 @@ if "suggestions" not in st.session_state:
         {"nom": "Awa Diop", "message": "Super application ! Très pratique pour les urgences la nuit.", "note": "⭐ 5/5"}
     ]
 
-# 2. Fonction mathématique pour calculer la distance (Formule de Haversine)
+# 3. Fonction mathématique pour calculer la distance (Formule de Haversine)
 def calculer_distance(lat1, lon1, lat2, lon2):
     R = 6371.0  # Rayon de la Terre en km
     dlat = math.radians(lat2 - lat1)
@@ -33,7 +34,7 @@ def calculer_distance(lat1, lon1, lat2, lon2):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     return round(R * c, 2)
 
-# 3. Styles CSS personnalisés & lisibles
+# 4. Styles CSS personnalisés & lisibles
 st.markdown("""
     <style>
     .stApp { background-color: #F8FAFC; font-family: 'Inter', sans-serif; }
@@ -87,7 +88,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 4. Navigation
+# 5. Navigation
 st.sidebar.title("🏥 Pharmacies CI")
 st.sidebar.markdown("---")
 menu = st.sidebar.radio("Navigation", ["🟢 Pharmacies de Garde", "🔍 Recherche", "🚨 Urgences", "📊 Admin & Avis"])
