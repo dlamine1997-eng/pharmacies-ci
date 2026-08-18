@@ -1,6 +1,22 @@
+[theme]
+primaryColor = "#2563EB"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F8FAFC"
+textColor = "#1E293B"
+font = "sans serif"
+
 [server]
+headless = true
+enableCORS = false
+enableXsrfProtection = false
+
 head = """
-<meta name="google-site-verification" content="JVHHkwdTC5NTDYRH0vI1vZ6NEu4PLBRjAt1b8shi12A" />
-<meta name="google-site-verification" content="googleb97b37c701930e06" />
+<meta name="google-site-verification" content="o24x1N6x7iKqf3Mv9R4a0" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NCK32Y3RL4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NCK32Y3RL4');
+</script>
 """
-enableStaticServing = true
